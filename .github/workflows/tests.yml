@@ -119,16 +119,15 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: test-car-report
-          path: ${{ runner.workspace }}/$last_directory/build/report.txt
+          path: */build/report.txt
           retention-days: 14
 
       - name: Job summary
         run: |
-          last_directory=$(basename ${{ runner.workspace }})
           echo "### Résultat du test *car*" >> $GITHUB_STEP_SUMMARY
           echo '' >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
-          cat ${{ runner.workspace }}/$last_directory/build/report.txt >> $GITHUB_STEP_SUMMARY
+          cat */build/report.txt >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
 
   Deploy:
