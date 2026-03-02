@@ -3,33 +3,53 @@
 #include <string.h>
 #include "./../include/calculator.h"
 
-int main(int argc, char *argv[]){
-	if (argc == 4)
-	{
-	char* op = argv[1];
-	char* a = argv[2];
-	char* b = argv[3];
+int main(int argc, char *argv[]) {
 	double r = 0;
+	char *op;
+
+	if (argc < 3) {
+		printf("Erreur de parametres");
+		return 0;
+	}
+
+	op = argv[1];
+
+	/* Opération unaire : car */
+	if (strcmp(op, "car") == 0) {
+		if (argc != 3) {
+			printf("Erreur de parametres");
+			return 0;
+		}
+		r = _car(atof(argv[2]));
+		printf("%lf", r);
+		return 0;
+	}
+
+	/* Opérations binaires : add, sub, mul, div */
+	if (argc != 4) {
+		printf("Erreur de parametres");
+		return 0;
+	}
+
 	if (strcmp(op, "add") == 0) {
-		r = _add(atof(a), atof(b));
-		printf("%lf",r);
+		r = _add(atof(argv[2]), atof(argv[3]));
+		printf("%lf", r);
 	}
 	else if (strcmp(op, "sub") == 0) {
-		r = _sub(atof(a), atof(b));
-		printf("%lf",r);
+		r = _sub(atof(argv[2]), atof(argv[3]));
+		printf("%lf", r);
 	}
 	else if (strcmp(op, "mul") == 0) {
-		r = _mul(atof(a), atof(b));
-		printf("%lf",r);
+		r = _mul(atof(argv[2]), atof(argv[3]));
+		printf("%lf", r);
 	}
 	else if (strcmp(op, "div") == 0) {
-		r = _div(atof(a), atof(b));
-		printf("%lf",r);
+		r = _div(atof(argv[2]), atof(argv[3]));
+		printf("%lf", r);
 	}
-	else {printf("Erreur de parametres");}
+	else {
+		printf("Erreur de parametres");
 	}
-	else {printf("Erreur de parametres");}
+
 	return 0;
 }
-
-		
